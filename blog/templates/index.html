@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>fank</title>
+</head>
+<body>
+<h1>欢迎光临xx的博客</h1>
+<div>
+{% for blog in blogs %}
+  <div class="blog_body">
+    <div class="blog_title"><a href="/blog/detail/?id={{ blog.id }}">{{ blog.caption }}</a></div>
+    <div class="blog_info">
+      <ul class="blog_info_list">
+        <li>分类：{{ blog.classification }}</li>
+        <li>发表时间：{{ blog.publish_time|date:"Y-m-d H:i" }}</li>
+        <li>标签：
+          {% for tag in blog.tags.all %}
+            {{ tag.tag_name }}
+          {% endfor %}
+        </li>
+      </ul>
+    </div>
+    <div class="blog_description">
+      {{ blog.content }}
+    </div>
+  </div>
+{% endfor %}
+</div>
+</body>
+</html>
