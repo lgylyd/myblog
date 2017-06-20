@@ -38,10 +38,13 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'newblog',
+    'users',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -80,13 +83,21 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',#mysql,oracle,sqlite3
+    #     'NAME': 'mydatabase',
+    #     'USER': 'mydatabaseuser',
+    #     'PASSWORD': 'mypassword',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '5432',
+    # }
 }
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'zh_CN'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -96,17 +107,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+#AUTH_USER_MODEL = 'users.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'collected_static')
-STATICFILES_DIRS = (
-	os.path.join(BASE_DIR),
-	'/home/icgoo/pywork/fankblog/blog/static/',
-)
-STATICFILES_FINDERS = (
-	"django.contrib.staticfiles.finders.FileSystemFinder",
-	"django.contrib.staticfiles.finders.AppDirectoriesFinder",
-)
+# STATIC_ROOT = os.path.join(BASE_DIR,'collected_static')
+# STATICFILES_DIRS = (
+# 	os.path.join(BASE_DIR),
+# 	'blog/static/',
+# )
+# STATICFILES_FINDERS = (
+# 	"django.contrib.staticfiles.finders.FileSystemFinder",
+# 	"django.contrib.staticfiles.finders.AppDirectoriesFinder",
+# )

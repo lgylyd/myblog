@@ -14,8 +14,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from blog import views as blog_views
+from users import views as users_views
+from newblog import views as newblog_views
+
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$',blog_views.blog_list,name='blog_list'),
+    url(r'admin/', include(admin.site.urls)),
+    url(r'^myblog/register/$', users_views.register),
+    url(r'^newblog/index',newblog_views.index,name="newblog_list"),
+    url(r'post/(?P<pk>[0-9]+)/$',newblog_views.detail,name='newblog_detail'),
 ]
