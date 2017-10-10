@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'blog',
     'newblog',
     'users',
+    'testadmin',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'myblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        #'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,10 +112,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-
+LOGIN_URL = '/testadmin/login'
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR,'collected_static')
-# STATICFILES_DIRS = (
+# STATICFILES_DIRS = ( JBM      
 # 	os.path.join(BASE_DIR),
 # 	'blog/static/',
 # )

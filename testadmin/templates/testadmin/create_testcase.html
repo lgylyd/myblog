@@ -1,0 +1,155 @@
+{% include 'testadmin/top.html'%}
+
+</head>
+ <body class="gray-bg">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>创建测试用例 <small></small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="form_basic.html#">选项1</a>
+                            </li>
+                            <li><a href="form_basic.html#">选项2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="post" class="form-horizontal" action="/testadmin/createTestCase">
+                         {% csrf_token %}
+                            {% if info %}
+                                <p id="info" align="center" style="background:#66CCFF;color:red">{{info}}</p>
+                            {% endif %}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">* 项目名</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="project_name"  value="{{post.project_name}}"  class="form-control">
+                                <span class="help-block m-b-none">{{form.project_name.errors}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">* 编号</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="number"  value="{{post.number}}"  class="form-control">
+                                <span class="help-block m-b-none">{{form.number.errors}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">* 模块</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="function_model" value="{{post.function_model}}" class="form-control">
+                                <span class="help-block m-b-none">{{form.function_model.errors}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">* 标题</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="title" value="{{post.title}}" class="form-control">
+                                <span class="help-block m-b-none">{{form.title.errors}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">* 前置条件</label>
+                            <div class="col-sm-5">
+                                <textarea  name="precondition"  class="form-control">{{post.precondition}}</textarea>
+                                <span class="help-block m-b-none">{{form.precondition.errors}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">* 用例执行步骤</label>
+                            <div class="col-sm-5">
+                                <textarea  name="procedure"  class="form-control" style=" height: 190px;">{{post.procedure}}</textarea>
+                                <span class="help-block m-b-none">{{form.procedure.errors}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">* 预期结果</label>
+                            <div class="col-sm-5">
+                                <textarea  name="precondition"  class="form-control">{{post.ex_result}}</textarea>
+                                <span class="help-block m-b-none">{{form.ex_result.errors}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">* 用例优先级</label>
+                            <div class="col-sm-5">
+                                <select class="form-control m-b" name="grade">
+                                    <option value="中">中</option>
+                                    <option value="高">高</option>
+                                    <option value="低">低</option>
+                                </select>
+                                <span class="help-block m-b-none">{{form.grade.errors}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-primary" type="submit">保存</button>
+                                <a class="btn btn-primary" href="/testadmin/createTestCase">取消</a>
+                                <a class="btn btn-primary" href="/testadmin/testCase">返回</a>
+
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group">
+                        <form enctype="multipart/form-data" action="/testadmin/testCaseUpload" style="margin-left: 280px" method="post">
+                            {% csrf_token %}
+                            批量上传测试用例：<input id="fileInput" class="input-file" type="file" name="uploadfile" style="height:28px;width:148px;"/>
+                            <input class="btn btn-danger" type="submit"  value="导入"/>
+                            <a class="btn btn-danger" style="margin-left: 20px" href="/testadmin/testCaseFileDownload">模板下载</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--<script>-->
+    <!--function getFileExt(filename) {-->
+    <!--filename=filename.replace(/.*(\/|\\)/, "");-->
+    <!--var fileExt=(/[.]/.exec(filename)) ? /[^.]+$/.exec(filename.toLowerCase()) : '';-->
+    <!--return fileExt;-->
+<!--}-->
+    <!--$(".upload_file").on('click', function (event) {-->
+        <!--event.preventDefault();-->
+        <!--var html = '<div style="margin-left: 30%;margin-top: 10%">' +-->
+            <!--'<form action="/testadmin/test_case_upload" enctype="multipart/form-data" method="post">' +-->
+            <!--{% csrf_token %}-->
+            <!--'<input type="file" name="file" onchange="auto_import(this)">' +-->
+            <!--'</form>' +-->
+            <!--'</div>';-->
+        <!--layer.open({-->
+            <!--type: 1,-->
+            <!--title: '上传表格',-->
+            <!--skin: 'layui-layer-rim',-->
+            <!--area: ['420px', '240px'],-->
+            <!--content: html-->
+        <!--});-->
+    <!--});-->
+
+    <!--function auto_import(obj) {-->
+        <!--var file_name = $(obj).val();-->
+        <!--var ext = getFileExt(file_name);-->
+        <!--if (ext != 'xls' && ext != 'xlsx') {-->
+            <!--layer.alert('只允许上传xls和xlsx格式的文件！');-->
+            <!--$(obj).val('');-->
+            <!--return ;-->
+        <!--}-->
+        <!--layer.load(1);-->
+        <!--$(obj).parents('form').submit();-->
+    <!--};-->
+<!--</script>-->
+
+<script>
+		setTimeout(function disappear(){document.getElementById("info").style.display="none";},3000);
+		//1000是多久被隐藏，单位毫秒
+</script>
+{% include 'testadmin/bottom.html'%}

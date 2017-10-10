@@ -1,0 +1,96 @@
+{% include 'testadmin/top.html' %}
+{% load staticfiles %}
+<title>首页</title>
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span><img class="img-circle" width="50" height="50" src="{% static 'testadmin/img/user.png' %}" alt="image" /></span>
+
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                               <span class="block m-t-xs"><strong class="font-bold">{{ username }}</strong></span>
+                                <!--<span class="text-muted text-xs block">{{ username }}<b class="caret"></b></span>-->
+                                </span>
+                            </a>
+                        </div>
+                        <div class="logo-element">H+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-arrow-circle-down"></i>
+                            <span class="nav-label">测试信息管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="testCase" data-index="0">测试用例</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="databaseInfo">数据库信息</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="systemInfo">系统测试地址信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-arrow-circle-down"></i>
+                            <span class="nav-label">测试脚本管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="testCase" data-index="0">测试用例</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <a href="javascript:;" class="active J_menuTab" data-id="testadmin/userInfo">首页</a>
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+                </button>
+                <div class="btn-group roll-nav roll-right">
+                    <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+
+                    </button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                        <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                        </li>
+                        <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="/testadmin/logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i>退出</a>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="/testadmin/userInfo" frameborder="0" data-id="testadmin/userInfo" seamless></iframe>
+            </div>
+            <div class="footer">
+            </div>
+        </div>
+
+        {% include 'testadmin/bottom.html' %}

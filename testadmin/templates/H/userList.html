@@ -1,0 +1,198 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_bootstrap.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:03 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>H+ 后台主题UI框架 - Bootstrap Table</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <link rel="shortcut icon" href="favicon.ico">
+	<link href="{% static 'testadmin/css/bootstrap.min14ed.css' %}" rel="stylesheet">
+    <link href="{% static 'testadmin/css/font-awesome.min93e3.css' %}" rel="stylesheet">
+    <link href="{% static 'testadmin/css/plugins/bootstrap-table/bootstrap-table.min.css' %}" rel="stylesheet">
+    <link href="{% static 'testadmin/css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'testadmin/css/style.min862f.css' %}" rel="stylesheet">
+	<script>
+		setTimeout(function disappear(){document.getElementById("info").style.display="none";},3000);
+		//1000是多久被隐藏，单位毫秒
+	</script>
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight" style="height: 100%;">
+
+
+    <div class="ibox float-e-margins" style="height: 100%;">
+        <div class="ibox-title">
+            <h5>基本</h5>
+            <div class="ibox-tools">
+                <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-wrench"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#">选项1</a>
+                    </li>
+                    <li><a href="#">选项2</a>
+                    </li>
+                </ul>
+                <a class="close-link">
+                    <i class="fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="row row-lg">
+                <div class="col-sm-12">
+                    <div class="col-md-2">
+                        <input type="text" placeholder="请输入用户名或手机号" class="form-control">
+                    </div>
+                    <a class="btn btn-primary" href="javascript:void(0);">搜索</a>
+					<form enctype="multipart/form-data" action="/testadmin/test_case_upload" method="post">
+					{% csrf_token %}
+					<input id="fileInput" class="input-file" type="file" name="uploadfile" style="height:28px;width:148px;"/>
+					<input class="btn btn-danger" type="submit" value="导入"/>
+					</form>
+					{% if info %}
+                    <p id="info" style="background:#66CCFF;height:20px;width:148px;color:red">{{info}}</p>
+					{% endif %}
+                </div>
+                <div class="col-sm-12">
+                    <h4 class="example-title">从数据中加载</h4>
+                    <div class="example">
+                        <div class="bootstrap-table">
+                            <div class="fixed-table-toolbar">
+                            </div>
+                            <div class="fixed-table-container" style="height: 500px; padding-bottom: 36px;">
+                                <div class="fixed-table-header" style="margin-right: 0px;">
+                                    <table class="table table-hover" style="width: 1606px;">
+                                        <thead>
+                                        <tr>
+                                            <th style="" data-field="Tid" tabindex="0">
+                                                <div class="th-inner ">ID</div>
+                                                <div class="fht-cell" style="width: 236px;"></div>
+                                            </th>
+                                            <th style="" data-field="First" tabindex="0">
+                                                <div class="th-inner ">用户名</div>
+                                                <div class="fht-cell" style="width: 667px;"></div>
+                                            </th>
+                                            <th style="" data-field="sex" tabindex="0">
+                                                <div class="th-inner ">所属组</div>
+                                                <div class="fht-cell" style="width: 350px;"></div>
+                                            </th>
+                                            <th style="" data-field="Score" tabindex="0">
+                                                <div class="th-inner ">手机号码</div>
+                                                <div class="fht-cell" style="width: 350px;"></div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="fixed-table-body">
+                                    <div class="fixed-table-loading" style="top: 37px;">正在努力地加载数据中，请稍候……</div>
+                                    <table id="exampleTableFromData" data-mobile-responsive="true" class="table table-hover" style="margin-top: -36px;">
+                                        <thead>
+                                        <tr>
+                                            <th style="" data-field="Tid" tabindex="0">
+                                                <div class="th-inner ">ID</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th style="" data-field="First" tabindex="0">
+                                                <div class="th-inner ">姓名</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th style="" data-field="sex" tabindex="0">
+                                                <div class="th-inner ">性别</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                            <th style="" data-field="Score" tabindex="0">
+                                                <div class="th-inner ">评分</div>
+                                                <div class="fht-cell"></div>
+                                            </th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr data-index="0">
+                                            <td style="">1</td>
+                                            <td style="">奔波儿灞</td>
+                                            <td style="">男</td>
+                                            <td style="">50</td>
+                                        </tr>
+                                        <tr data-index="1">
+                                            <td style="">2</td>
+                                            <td style="">灞波儿奔</td>
+                                            <td style="">男</td>
+                                            <td style="">94</td>
+                                        </tr>
+                                        <tr data-index="2">
+                                            <td style="">3</td>
+                                            <td style="">作家崔成浩</td>
+                                            <td style="">男</td>
+                                            <td style="">80</td>
+                                        </tr>
+                                        <tr data-index="3">
+                                            <td style="">4</td>
+                                            <td style="">韩寒</td>
+                                            <td style="">男</td>
+                                            <td style="">67</td>
+                                        </tr>
+                                        <tr data-index="4">
+                                            <td style="">5</td>
+                                            <td style="">郭敬明</td>
+                                            <td style="">男</td>
+                                            <td style="">100</td>
+                                        </tr>
+                                        <tr data-index="5">
+                                            <td style="">6</td>
+                                            <td style="">马云</td>
+                                            <td style="">男</td>
+                                            <td style="">77</td>
+                                        </tr><tr data-index="6">
+                                            <td style="">7</td>
+                                            <td style="">范爷</td>
+                                            <td style="">女</td>
+                                            <td style="">87</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+                                <div class="fixed-table-footer" style="display: none;"><table><tbody><tr></tr></tbody></table></div><div class="fixed-table-pagination" style="display: none;"></div></div></div><div class="clearfix"></div>
+                        <table>
+                            <tfoot>
+                            <tr>
+                                <td colspan="5" class="footable-visible">
+                                    <ul class="pagination pull-right"><li class="footable-page-arrow disabled"><a data-page="first" href="#first">«</a></li><li class="footable-page-arrow disabled"><a data-page="prev" href="#prev">‹</a></li><li class="footable-page active"><a data-page="0" href="#">1</a></li><li class="footable-page"><a data-page="1" href="#">2</a></li><li class="footable-page-arrow"><a data-page="next" href="#next">›</a></li><li class="footable-page-arrow"><a data-page="last" href="#last">»</a></li></ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Panel Basic -->
+
+
+</div>
+
+
+</body>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/table_bootstrap.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:06 GMT -->
+</html>

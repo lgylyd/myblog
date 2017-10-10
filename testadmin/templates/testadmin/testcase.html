@@ -1,0 +1,99 @@
+ {% include 'testadmin/top.html' %}
+ {% load staticfiles %}
+ <link href="{% static 'testadmin/css/global.css' %}" rel="stylesheet">
+ <body class="gray-bg">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>测试用例</h5>
+            </div class="ibox-content">
+            <div class="ibox-content" >
+                <form class="search-form autoJqValidator" method="POST" action="/testadmin/searchTestCase">
+                    {% csrf_token %}
+                    <table class="gyl-content-search">
+                        <tbody>
+                        <tr>
+                            <td class="gyl-search-name">项目</td>
+                            <td><input type="text" class="form-control input-sm" name="project_name"/></td>
+                            <td class="gyl-search-name">模块</td>
+                            <td><input type="text" class="form-control input-sm" name="function_model"/></td>
+                            <td class="gyl-search-name">标题</td>
+                            <td><input type="text" class="form-control input-sm" name="title"/></td>
+                            <td class="gyl-search-name">测试结果</td>
+                            <td>
+                                <select class="form-control input-sm" name="test_result">
+                                    <option value="">全部</option>
+                                    <option value="未测试">未测试</option>
+                                    <option value="测试通过">测试通过</option>
+                                    <option value="测试未通过">测试通过</option>
+                                </select>
+                            </td>
+                            <td class="gyl-search-name">用例优先级</td>
+                            <td>
+                                <select class="form-control input-sm" name="grade">
+                                    <option value="">全部</option>
+                                    <option value="高">高</option>
+                                    <option value="中">中</option>
+                                    <option value="低">低</option>
+                                </select>
+                            </td>
+                            <td colspan="2"><button class="btn btn-sm btn-info" id="btn_search" type="submit">查询</button></td>
+                            <td>
+                                <a class="btn btn-sm btn-primary btn-action" href="/testadmin/createTestCase">创建</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="ibox-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>项目名</th>
+                            <th>编号</th>
+                            <th>模块</th>
+                            <th>标题</th>
+                            <th>优先级</th>
+                            <th>测试结果</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    {% if display %}
+                        {% if tableinfos %}
+                        <tbody>
+                            {% for tableinfo in tableinfos %}
+                                <tr>
+                                    <td>{{tableinfo.id}}</td>
+                                    <td>{{tableinfo.project_name}}</td>
+                                    <td>{{tableinfo.number}}</td>
+                                    <td>{{tableinfo.function_model}}</td>
+                                    <td>{{tableinfo.title}}</td>
+                                    <td>{{tableinfo.grade}}</td>
+                                    <td>{{tableinfo.test_result}}</td>
+                                    <td><a class="btn btn-sm btn-danger checkbox-all-action" href="/testadmin/queryTestCase/{{tableinfo.id}}">详情</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        {% else %}
+                            <tr>
+                                <td style="color:red">
+                                    未查询到任何数据!!!
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% else %}
+                        <tr>
+                            <td style="color:red">
+                               请点击查询!!!
+                            </td>
+                        </tr>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+ {% include 'testadmin/bottom.html' %}

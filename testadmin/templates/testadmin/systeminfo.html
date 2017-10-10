@@ -1,0 +1,92 @@
+ {% include 'testadmin/top.html' %}
+ {% load staticfiles %}
+ <link href="{% static 'testadmin/css/global.css' %}" rel="stylesheet">
+ <body class="gray-bg">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>系统测试地址信息查询</h5>
+            </div class="ibox-content">
+            <div class="ibox-content" >
+                <form class="search-form autoJqValidator" method="POST" action="/testadmin/searchSystemInfo">
+                    {% csrf_token %}
+                    <table class="gyl-content-search">
+                        <tbody>
+                        <tr>
+                            <td class="gyl-search-name">系统名字</td>
+                            <td><input type="text" class="form-control input-sm" name="name"/></td>
+                            <td class="gyl-search-name">系统数据库</td>
+                            <td>
+                                <select class="form-control input-sm" name="database_name">
+                                    <option value="">全部</option>
+                                    {% for databaseInfo_select in databaseInfo_selects %}
+                                        <option value="{{databaseInfo_select.id}}">{{databaseInfo_select.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td class="gyl-search-name">系统地址</td>
+                            <td><input type="text" class="form-control input-sm" name="address"/></td>
+                            <td colspan="2"><button class="btn btn-sm btn-info" id="btn_search" type="submit">查询</button></td>
+                            <td>
+                                <a class="btn btn-sm btn-primary btn-action" href="/testadmin/createSystemInfo">创建</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="ibox-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>系统名字</th>
+                            <th>系统地址</th>
+                            <th>系统数据库</th>
+                            <th>系统登入账号</th>
+                            <th>系统登入密码</th>
+                            <th>创建人</th>
+                            <th>创建时间</th>
+                            <th>备注</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    {% if display %}
+                        {% if tableinfos %}
+                        <tbody>
+                            {% for tableinfo in tableinfos %}
+                                <tr>
+                                    <td>{{tableinfo.id}}</td>
+                                    <td>{{tableinfo.name}}</td>
+                                    <td><a href="{{tableinfo.address}}">{{tableinfo.address}}</a></td>
+                                    <td>{{tableinfo.database_name}}</td>
+                                    <td>{{tableinfo.account}}</td>
+                                    <td>{{tableinfo.password}}</td>
+                                    <td>{{tableinfo.create_user}}</td>
+                                    <td>{{tableinfo.create_time | date:"Y-m-d H:i:s"}}</td>
+                                    <td>{{tableinfo.remark}}</td>
+                                    <td><a class="btn btn-sm btn-danger checkbox-all-action" href="/testadmin/querySystemInfo/{{tableinfo.id}}">修改</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        {% else %}
+                            <tr>
+                                <td style="color:red">
+                                    未查询到任何数据!!!
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% else %}
+                        <tr>
+                            <td style="color:red">
+                               请点击查询!!!
+                            </td>
+                        </tr>
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+ {% include 'testadmin/bottom.html' %}

@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>海豚测试管理系统</title>
+
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="{% static 'testadmin/css/bootstrap.min14ed.css' %}" rel="stylesheet">
+    <link href="{% static 'testadmin/css/font-awesome.min93e3.css' %}" rel="stylesheet">
+    <link href="{% static 'testadmin/css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'testadmin/css/style.min862f.css' %}" rel="stylesheet">
+</head>
+
+<body class="gray-bg">
+<div class="ibox-content" style="display: block;">
+<form class="search-form autoJqValidator" method="POST" role="form">
+<table class="gyl-content-search">
+<tbody>
+<tr>
+<td class="gyl-search-name">收款单号：</td>
+<td>
+<td class="gyl-search-name">公司名称：</td>
+<td>
+<td class="gyl-search-name">单据日期：</td>
+<td>
+<input class="form-control input-sm layer-date laydate-icon" onclick="laydate()" name="orderstart" placeholder="开始日期">
+</td>
+<td>
+<input class="form-control input-sm layer-date laydate-icon" onclick="laydate()" name="orderend" placeholder="结束日期">
+</td>
+</tr>
+<tr>
+<td class="gyl-search-name">水单编号：</td>
+<td>
+<td class="gyl-search-name">未结算金额：</td>
+<td>
+<td class="gyl-search-name">收款日期：</td>
+<td>
+<input class="form-control input-sm layer-date laydate-icon" onclick="" name="start" placeholder="开始日期">
+</td>
+<td>
+<input class="form-control input-sm layer-date laydate-icon" readonly="" onclick="laydate()" name="end" placeholder="结束日期">
+</td>
+</tr>
+<tr>
+</tbody>
+</table>
+</form>
+</div>
+    <script src="{% static 'testadmin/js/jquery.min.js' %}"></script>
+    <script src="{% static 'testadmin/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'testadmin/js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'testadmin/js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'testadmin/js/plugins/layer/layer.min.js' %}"></script>
+    <script src="{% static 'testadmin/js/hplus.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'testadmin/js/contabs.min.js' %}"></script>
+    <script src="{% static 'testadmin/js/plugins/pace/pace.min.js' %}"></script>
+</body>
+
+
+<!-- Mirrored from www.zi-han.net/theme/hplus/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:17:11 GMT -->
+</html>
